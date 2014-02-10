@@ -2,7 +2,9 @@
 
 function get_client_ip() {
      $ipaddress = '';
-     if (getenv('HTTP_CLIENT_IP'))
+     if(getenv('REMOTE_ADDR'))
+         $ipaddress = getenv('REMOTE_ADDR');
+     else if (getenv('HTTP_CLIENT_IP'))
          $ipaddress = getenv('HTTP_CLIENT_IP');
      else if(getenv('HTTP_X_FORWARDED_FOR'))
          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
@@ -12,8 +14,6 @@ function get_client_ip() {
          $ipaddress = getenv('HTTP_FORWARDED_FOR');
      else if(getenv('HTTP_FORWARDED'))
         $ipaddress = getenv('HTTP_FORWARDED');
-     else if(getenv('REMOTE_ADDR'))
-         $ipaddress = getenv('REMOTE_ADDR');
      else
          $ipaddress = 'UNKNOWN';
      return $ipaddress; 
@@ -29,8 +29,10 @@ if($query && $query['status'] == 'success') {
   //get Coords
   $lat = $query['lat'];
   $lon = $query['lon'];
+	$city = $query['city'];
 
   $url = "http://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}";
+  //$url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&APPID=test";
 
   	$djson = file_get_contents($url);
 	echo $djson;
