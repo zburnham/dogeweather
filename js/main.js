@@ -3,7 +3,7 @@
 	   function getWeather(link) {
 	   		$.getJSON(link, function(data){
 
-			//console.log(data);
+			console.log(data);
 
 			//set weather id & icon 
 			var id = data.weather[0].id;
@@ -11,6 +11,8 @@
 
 			$('#weather-id').text(id);
 			$('#weather-icon').text(icon);
+            
+            snowStorm.snowCharacter = 'y';
 
 			//TESTING 
 			//icon = "01n";
@@ -37,8 +39,8 @@
 
 			$(".suchlikes").show();
 			$(".ourinfo").show();
-
-			//initialise such doge
+            
+            //initialise such doge
 			$($.doge);
 		});
 	   }

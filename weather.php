@@ -22,7 +22,7 @@ function get_client_ip() {
 $ip = get_client_ip(); // the IP address to query
 
 //test ip
-//$ip = "180.76.6.19";
+$ip = "71.234.11.209";
 
 $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$ip));
 if($query && $query['status'] == 'success') {
@@ -31,7 +31,7 @@ if($query && $query['status'] == 'success') {
   $lon = $query['lon'];
 	$city = $query['city'];
 
-  $url = "http://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}";
+  $url = "http://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&cnt=1";
   //$url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&APPID=test";
 
   	$djson = file_get_contents($url);
